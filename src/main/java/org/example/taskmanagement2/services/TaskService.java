@@ -3,6 +3,7 @@ package org.example.taskmanagement2.services;
 import org.example.taskmanagement2.dto.requestDto.CreateRequestDto;
 import org.example.taskmanagement2.dto.responseDto.ResponseInfoDto;
 import org.example.taskmanagement2.entity.Task;
+import org.example.taskmanagement2.exception.ResourceNotFoundException;
 import org.example.taskmanagement2.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class TaskService {
 
     public Task findById(int id) {
         Task taskResponse = taskRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("No task found")
+                () -> new ResourceNotFoundException("Currently in Service. No task found by id : " + id )
         );
 
         return taskResponse;
@@ -36,7 +37,7 @@ public class TaskService {
 
     public Task update(int id, Task requestTask){
         Task taskResponse = taskRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("No task found with the " + id)
+            () -> new ResourceNotFoundException("No task found with the " + id)
         );
 
         taskResponse.setDescription(requestTask.getDescription());
@@ -53,7 +54,8 @@ public class TaskService {
 //    }
     public Task delete(int id) {
         Task taskResponse = taskRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("No task found for deletion with " + id));
+                () -> new ResourceNotFoundException("No task found for deletion with " + id));
+
         taskRepository.delete(taskResponse);
 
         return taskResponse;

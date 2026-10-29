@@ -29,7 +29,8 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable int id) {
         Task taskResponse = taskService.findById(id) ;
-        return taskResponse == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() : ResponseEntity.status(HttpStatus.OK).body(taskResponse);
+//        return taskResponse == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() : ResponseEntity.status(HttpStatus.OK).body(taskResponse);
+        return ResponseEntity.ok(taskResponse); // after setting Exception Handler. 
     }
 
 

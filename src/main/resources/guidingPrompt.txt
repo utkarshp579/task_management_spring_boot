@@ -11,4 +11,6 @@ When I am ready to implement:
 - Explain important design decisions.
 - Run tests only when appropriate and report the actual results.
 
-If I misunderstand a concept, challenge my reasoning and explain the flaw. Optimize for my learning, not the number of lines of code generated.
+If I misunderstand
+aadas
+a concept, challenge my reasoning and explain the flaw. Optimize for my learning, not the number of lines of code generated.
