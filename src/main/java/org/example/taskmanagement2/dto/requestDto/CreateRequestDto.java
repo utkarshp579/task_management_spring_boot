@@ -11,8 +11,7 @@ public class CreateRequestDto {
 
     @NotBlank(message = "Status could not be blank.")
     private String status;
-    asd
-    asd
+    
     public String getDescription() {
         return description;
     }
