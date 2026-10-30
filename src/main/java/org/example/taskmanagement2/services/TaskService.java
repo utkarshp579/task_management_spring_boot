@@ -1,5 +1,6 @@
 package org.example.taskmanagement2.services;
 
+import org.example.taskmanagement2.annotations.TrackExecutionTime;
 import org.example.taskmanagement2.dto.requestDto.CreateRequestDto;
 import org.example.taskmanagement2.dto.responseDto.ResponseInfoDto;
 import org.example.taskmanagement2.entity.Task;
@@ -23,10 +24,13 @@ public class TaskService {
         Task task = mapDtoToEntity(requestDto);
         Task savedTask = taskRepository.save(task);
         ResponseInfoDto responseInfoDto = mapEntityToRequestDto(savedTask);
-
         return responseInfoDto;
     }
 
+    @TrackExecutionTime(
+            warnAfter = 1500,
+            operation = "Get Student Data"
+    )
     public Task findById(int id) {
         Task taskResponse = taskRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Currently in Service. No task found by id : " + id )
